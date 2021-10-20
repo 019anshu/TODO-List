@@ -17,17 +17,20 @@ x = PrettyTable()
 
 
 def my_list():
-    x.field_names = ["Item Names"]
-    for i in my_todo_list:
-        # add new row to our prettytble on every iteration.
-        x.add_row([i])
-    # get title for each to-do.
-    # x.field_names = ["Added on Date"]
+    if my_todo_list:
+        x.field_names = ["Item Names"]
+        for i in my_todo_list:
+            # add new row to our prettytble on every iteration.
+            x.add_row([i])
+        # get title for each to-do.
+        # x.field_names = ["Added on Date"]
 
-    print(x.get_string(title="TO DO List"))
-    # clear previous info, every timee the table is reloaded
-    # update our list with new information
-    x.clear_rows()
+        print(x.get_string(title="TO DO List"))
+        # clear previous info, every timee the table is reloaded
+        # update our list with new information
+        x.clear_rows()
+    else:
+        print("Your TO-DO List is Empty.\n Add some now!")
 
 
 running = True
@@ -62,7 +65,7 @@ while running:
                         f"\n Are you sure to delete \'{item_name}\' from your TODO List? (y/n) : ")).strip()
                     if choice == 'y':
                         my_todo_list.remove(item_name)
-                        print("Your updated TO-DO List:")
+                        print("\nYour updated TO-DO List:")
                         my_list()
                         break
                 else:
@@ -88,7 +91,7 @@ while running:
                             f" Please enter a name you want to update \'{item_name}\' with: ").lower()).strip()
                         index = my_todo_list.index(item_name)
                         my_todo_list[index] = updated_item
-                        print("Your updated TO-DO List:")
+                        print("\nYour updated TO-DO List:")
                         my_list()
                         break
                 else:
